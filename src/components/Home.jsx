@@ -1,8 +1,10 @@
 import React from "react";
 import './Home.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useAuth } from "./auth";
 
 export default function Home() {
+    const auth = useAuth();
 return (
     <div>
         <nav className="navbar">
@@ -15,7 +17,9 @@ return (
                     <Link to="/about"><li>About</li></Link>
                     <Link to="/services"><li>Services</li></Link>
                     <Link to="/profile"><li>Profile</li></Link>
-                    <Link to="/login"><li>Login</li></Link>
+                    {
+                        !auth.user && (<Link to="/login"><li>Login</li></Link>)
+                    }
                 </ul>
             </div>
         </nav>
